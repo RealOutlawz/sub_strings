@@ -1,33 +1,30 @@
 dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit","below"]
 
-def substrings(word, array)
+def substrings(str, array)
   temp_hash = Hash.new(0)
 
-  #split string into multiple words?
-  word.downcase!
-  print word;
+  # turn the word lowercase to be case insensitive 
+  lowercased_str = str.downcase
   
-  word.scan(/\w+/) do |word|
-    if array.include?(word)
-      temp_hash[word] += 1
-    end
-    print temp_hash
-  end
+  # removing the punctuation
+  no_punctuation = lowercased_str.gsub(/[^a-z0-9\s]/, "")
+  
+  # splitting word into an array
+  split_words = no_punctuation.split
 
-=begin
-  #iterate through the dictionary array and compare it to the temp array to see if theres a match
+  # Iterate over the given array and for each value count the amount of times a word appears from the split_words array appears
   array.each do |val|
-    temp_array.each do |temp_array_val|
-     if temp_array_val == val
+    split_words.each do |word|
+     if word == val
        temp_hash[val] += 1
      end
-   end
-   print temp_hash
+    end
   end
-=end
+
+  #print the hash with the counts
+  puts temp_hash
 end
 
-#make this word with multiple words?
 substrings("Howdy partner, sit down! How's it going?", dictionary)
 
 # exmaple output
